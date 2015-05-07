@@ -1,28 +1,12 @@
-# NYTimes Objective-C Style Guide
 # NYTimes Objective-C スタイルガイド	
-
-This style guide outlines the coding conventions of the iOS teams at The New York Times. We welcome your feedback in [issues](https://github.com/NYTimes/objetive-c-style-guide/issues), [pull requests](https://github.com/NYTimes/objetive-c-style-guide/pulls) and [tweets](https://twitter.com/nytimesmobile). Also, [we’re hiring](http://jobs.nytco.com/job/New-York-iOS-Developer-Job-NY-10001/73366300/).
-
-This style guide outlines the coding conventions of the iOS teams at The New York Times. We welcome your feedback in [issues](https://github.com/NYTimes/objetive-c-style-guide/issues), [pull requests](https://github.com/NYTimes/objetive-c-style-guide/pulls) and [tweets](https://twitter.com/nytimesmobile). Also, [we’re hiring](http://jobs.nytco.com/job/New-York-iOS-Developer-Job-NY-10001/73366300/).
 
 このスタイルガイドは、ニューヨークタイムズの iOS チームにおけるコーディング慣例の概要です。フィードバックを歓迎します。 [issues](https://github.com/NYTimes/objetive-c-style-guide/issues), [pull requests](https://github.com/NYTimes/objetive-c-style-guide/pulls) そして [ツイッター](https://twitter.com/nytimesmobile) よりお願いします。また、[人材募集中です](http://jobs.nytco.com/job/New-York-iOS-Developer-Job-NY-10001/73366300/)。
 
-Thanks to all of [our contributors](https://github.com/NYTimes/objective-c-style-guide/contributors).
-
 すべての [貢献いただいた方々](https://github.com/NYTimes/objective-c-style-guide/contributors) に感謝いたします。
-
-## Introduction
 
 ## イントロダクション
 
-Here are some of the documents from Apple that informed the style guide. If something isn’t mentioned here, it’s probably covered in great detail in one of these:
-
 ここでは、本スタイルガイドが情報源としている Apple のドキュメントをいくつか紹介します。本ガイドで述べられていないことも、以下ドキュメントでは詳細にカバーされていることでしょう。
-
-* [The Objective-C Programming Language](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjectiveC/Introduction/introObjectiveC.html)
-* [Cocoa Fundamentals Guide](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/Introduction/Introduction.html)
-* [Coding Guidelines for Cocoa](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html)
-* [iOS App Programming Guide](http://developer.apple.com/library/ios/#documentation/iphone/conceptual/iphoneosprogrammingguide/Introduction/Introduction.html)
 
 * [Objective-C プログラミング言語](https://developer.apple.com/jp/documentation/ObjC.pdf)
 * [Cocoa Fundamentals Guide](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/Introduction/Introduction.html)
@@ -31,86 +15,43 @@ Here are some of the documents from Apple that informed the style guide. If some
 
 ## Table of Contents
 
-* [Dot Notation Syntax](#dot-notation-syntax)
 * [ドット記法](#ドット記法)
-
-* [Spacing](#spacing)
 * [スペーシング](#スペーシング)
-
-* [Conditionals](#conditionals)
-* [Ternary Operator](#ternary-operator)
-* [条件演算子](#条件演算子)
-* [三項演算子](#三項演算子)
-
-* [Error handling](#error-handling)
+* [条件文](#条件文)
+  * [三項演算子](#三項演算子)
 * [エラーハンドリング](#エラーハンドリング)
-
-* [Methods](#methods)
 * [メソッド](#メソッド)
-
-* [Variables](#variables)
 * [変数](#変数)
-
-* [Naming](#naming)
-	* [Categories](#categories)
 * [名前付け](#名前付け)
-	* [カテゴリ](#カテゴリ)
-
-* [Comments](#comments)
+  * [カテゴリ](#カテゴリ)
 * [コメント](#コメント)
-
-* [Init & Dealloc](#init-and-dealloc)
 * [Init と Dealloc](#Init と Dealloc)
-
-* [Literals](#literals)
 * [リテラル](#リテラル)
-
-* [CGRect Functions](#cgrect-functions)
 * [CGRect に関する関数](#CGRect に関する関数)
-
-* [Constants](#constants)
 * [定数](#定数)
-
-* [Enumerated Types](#enumerated-types)
 * [列挙型](#enumerated-types)
-
-* [Bitmasks](#bitmasks)
 * [ビットマスク](#ビットマスク)
-
-* [Private Properties](#private-properties)
 * [プライベートプロパティ](#プライベートプロパティ)
-
-* [Image Naming](#image-naming)
 * [画像の名前](#画像の名前)
-
-* [Booleans](#booleans)
 * [ブーリアン](#ブーリアン)
-
-* [Singletons](#singletons)
 * [シングルトン](#シングルトン)
-
-* [Imports](#imports)
 * [インポート](#インポート)
-
-* [Xcode Project](#xcode-project)
 * [Xcode プロジェクト](#Xcode プロジェクト)
 
 
 
 ## ドット記法
 
-Dot notation should **always** be used for accessing and mutating properties. Bracket notation is preferred in all other instances.
-
-ドット記法は **常に** プロパティへアクセスしたり、変更したりする目的で使いましょう。ブラケット記法は、その他すべてのインスタンスで使用することが望ましいです。
+ドット記法は **必ず** プロパティへアクセスしたり、変更したりする目的で使いましょう。ブラケット記法は、その他すべてのインスタンスで使用することが望ましいです。
 
 
-**For example:**
+**例:**
 ```objc
 view.backgroundColor = [UIColor orangeColor];
 [UIApplication sharedApplication].delegate;
 ```
 
-**Not:**
+**正しくない例:**
 ```objc
 [view setBackgroundColor:[UIColor orangeColor]];
 UIApplication.sharedApplication.delegate;
@@ -118,13 +59,10 @@ UIApplication.sharedApplication.delegate;
 
 ## スペーシング
 
-* Indent using 4 spaces. Never indent with tabs. Be sure to set this preference in Xcode.
-* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
-
 * インデントは４文字のスペースで表記しましょう。決してタブは使わないこと。必ず Xcode でそのように設定しましょう。
-* メソッドの開き括弧、および他 (`if`/`else`/`switch`/`while` etc.) の開き括弧は、定義や条件式と同じ行に、閉じ括弧は新しい行に書きましょう。
+* メソッドの開き括弧、および他 (`if`/`else`/`switch`/`while` etc.) の開き括弧は、定義や条件式と同じ行に書き、閉じ括弧は新しい行に書きましょう。
 
-**For example:**
+**例:**
 ```objc
 if (user.isHappy) {
 // Do something
@@ -133,27 +71,24 @@ else {
 // Do something else
 }
 ```
-* There should be exactly one blank line between methods to aid in visual clarity and organization.
-* Whitespace within methods should be used to separate functionality (though often this can indicate an opportunity to split the method into several, smaller methods). In methods with long or verbose names, a single line of whitespace may be used to provide visual separation before the method’s body.
-* `@synthesize` and `@dynamic` should each be declared on new lines in the implementation.
-
 * メソッドとメソッドの間の空行はピッタリ１行にしましょう。見やすくなりますし、構造の助けになります。
-* Whitespace within methods should be used to separate functionality (though often this can indicate an opportunity to split the method into several, smaller methods). In methods with long or verbose names, a single line of whitespace may be used to provide visual separation before the method’s body.
-* `@synthesize` and `@dynamic` should each be declared on new lines in the implementation.
+* メソッド内の空白は、機能の分割に使われる必要がある（しかしながら、この場合メソッドをより小さく分ける機会を示しているかもしれない）。長い、または冗長な名前のメソッドの中では、視覚的な区切りのために、メソッドの本体の前に空白行が使われるかもしれませんね。
+* `@synthesize` と `@dynamic` は両方とも実装の中の新しい行で宣言する必要があります。
 
 
-## 条件演算子
+## 条件文
 
-Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent [errors](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256). These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line “inside” the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
+条件文の本体では、かならず波括弧を使いましょう。１行のみの場合など、波括弧が必要ない場合でも、[不都合](https://github.com/NYTimes/objective-c-style-guide/issues/26#issuecomment-22074256)を避けるため、そうしましょう。他の不都合としては、if文だと思い込んで２行目を付け加えてしまうことです。他に、[さらに危険な問題](http://programmers.stackexchange.com/a/16530) が起こるかもしれません。それは、if文の「中」だと思い込んで、行をコメントアウトした時、無意識に次の行がif文の一部になってしまうことです。加えて、他のすべての条件文と調和し、よってより簡単にスキャン可能です。
 
-**For example:**
+
+**例:**
 ```objc
 if (!error) {
 return success;
 }
 ```
 
-**Not:**
+**正しくない例:**
 ```objc
 if (!error)
 return success;
@@ -167,14 +102,15 @@ if (!error) return success;
 
 ### 三項演算子
 
+三項演算子「？」は、コードがより簡潔で綺麗になる場合のみ使いましょう。通常１つの条件のみが評価されます。複数の条件を評価する場合、通常if文の方がわかりやすく、名前付き変数のなかにりふぁくた
 The ternary operator, `?` , should only be used when it increases clarity or code neatness. A single condition is usually all that should be evaluated. Evaluating multiple conditions is usually more understandable as an if statement, or refactored into named variables.
 
-**For example:**
+**例:**
 ```objc
 result = a > b ? x : y;
 ```
 
-**Not:**
+**正しくない例:**
 ```objc
 result = a > b ? x = c > d ? c : d : y;
 ```
@@ -183,7 +119,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 When methods return an error parameter by reference, switch on the returned value, not the error variable.
 
-**For example:**
+**例:**
 ```objc
 NSError *error;
 if (![self trySomethingWithError:&error]) {
@@ -191,7 +127,7 @@ if (![self trySomethingWithError:&error]) {
 }
 ```
 
-**Not:**
+**正しくない例:**
 ```objc
 NSError *error;
 [self trySomethingWithError:&error];
@@ -215,7 +151,7 @@ In method signatures, there should be a space after the scope (`-` or `+` symbol
 
 Variables should be named descriptively, with the variable’s name clearly communicating what the variable _is_ and pertinent information a programmer needs to use that value properly.
 
-**For example:**
+**例:**
 
 * `NSString *title`: It is reasonable to assume a “title” is a string.
 * `NSString *titleHTML`: This indicates a title that may contain HTML which needs parsing for display. _“HTML” is needed for a programmer to use this variable effectively._
@@ -231,7 +167,7 @@ Asterisks indicating a type is a pointer should be “attached to” the variabl
 
 Property definitions should be used in place of naked instance variables whenever possible. Direct instance variable access should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information, see [Apple’s docs on using accessor methods in initializer methods and `dealloc`](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
 
-**For example:**
+**例:**
 
 ```objc
 @interface NYTSection: NSObject
@@ -241,7 +177,7 @@ Property definitions should be used in place of naked instance variables wheneve
 @end
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 @interface NYTSection : NSObject {
@@ -259,7 +195,7 @@ Apple naming conventions should be adhered to wherever possible, especially thos
 
 Long, descriptive method and variable names are good.
 
-**For example:**
+**例:**
 
 ```objc
 UIButton *settingsButton;
@@ -273,13 +209,13 @@ UIButton *setBut;
 
 A three letter prefix (e.g., `NYT`) should always be used for class names and constants, however may be omitted for Core Data entity names. Constants should be camel-case with all words capitalized and prefixed by the related class name for clarity. A two letter prefix (e.g., `NS`) is [reserved for use by Apple](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/DefiningClasses/DefiningClasses.html#//apple_ref/doc/uid/TP40011210-CH3-SW12).
 
-**For example:**
+**例:**
 
 ```objc
 static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 static const NSTimeInterval fadetime = 1.7;
@@ -289,13 +225,13 @@ Properties and local variables should be camel-case with the leading word being 
 
 Instance variables should be camel-case with the leading word being lowercase, and should be prefixed with an underscore. This is consistent with instance variables synthesized automatically by LLVM. **If LLVM can synthesize the variable automatically, then let it.**
 
-**For example:**
+**例:**
 
 ```objc
 @synthesize descriptiveVariableName = _descriptiveVariableName;
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 id varnm;
@@ -305,14 +241,14 @@ id varnm;
 
 Categories may be used to concisely segment functionality and should be named to describe that functionality.
 
-**For example:**
+**例:**
 
 ```objc
 @interface UIViewController (NYTMediaPlaying)
 @interface NSString (NSStringEncodingDetection)
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 @interface NYTAdvertisement (private)
@@ -346,7 +282,7 @@ return self;
 
 `NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
 
-**For example:**
+**例:**
 
 ```objc
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
@@ -355,7 +291,7 @@ NSNumber *shouldUseLiterals = @YES;
 NSNumber *buildingZIPCode = @10018;
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
@@ -370,7 +306,7 @@ When accessing the `x`, `y`, `width`, or `height` of a `CGRect`, always use the 
 
 > All functions described in this reference that take CGRect data structures as inputs implicitly standardize those rectangles before calculating their results. For this reason, your applications should avoid directly reading and writing the data stored in the CGRect data structure. Instead, use the functions described here to manipulate rectangles and to retrieve their characteristics.
 
-**For example:**
+**例:**
 
 ```objc
 CGRect frame = self.view.frame;
@@ -381,7 +317,7 @@ CGFloat width = CGRectGetWidth(frame);
 CGFloat height = CGRectGetHeight(frame);
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 CGRect frame = self.view.frame;
@@ -396,7 +332,7 @@ CGFloat height = frame.size.height;
 
 Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
 
-**For example:**
+**例:**
 
 ```objc
 static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times Company";
@@ -404,7 +340,7 @@ static NSString * const NYTAboutViewControllerCompanyName = @"The New York Times
 static const CGFloat NYTImageThumbnailHeight = 50.0;
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 #define CompanyName @"The New York Times Company"
@@ -444,7 +380,7 @@ NYTAdCategoryTechnology = 1 << 3
 
 Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class.
 
-**For example:**
+**例:**
 
 ```objc
 @interface NYTAdvertisement ()
@@ -460,7 +396,7 @@ Private properties should be declared in class extensions (anonymous categories)
 
 Image names should be named consistently to preserve organization and developer sanity. They should be named as one camel case string with a description of their purpose, followed by the un-prefixed name of the class or property they are customizing (if there is one), followed by a further description of color and/or placement, and finally their state.
 
-**For example:**
+**例:**
 
 * `RefreshBarButtonItem` / `RefreshBarButtonItem@2x` and `RefreshBarButtonItemSelected` / `RefreshBarButtonItemSelected@2x`
 * `ArticleNavigationBarWhite` / `ArticleNavigationBarWhite@2x` and `ArticleNavigationBarBlackSelected` / `ArticleNavigationBarBlackSelected@2x`.
@@ -489,7 +425,7 @@ if (!someNumber.boolValue)
 if (someNumber.boolValue == NO)
 ```
 
-**Not:**
+**正しくない例:**
 
 ```objc
 if (isAwesome == YES) // Never do this.
@@ -497,7 +433,7 @@ if (isAwesome == YES) // Never do this.
 
 If the name of a `BOOL` property is expressed as an adjective, the property’s name can omit the `is` prefix but should specify the conventional name for the getter.
 
-**For example:**
+**例:**
 
 ```objc
 @property (assign, getter=isEditable) BOOL editable;
